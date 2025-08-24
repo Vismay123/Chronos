@@ -12,8 +12,6 @@ export default function AdminDashboard() {
 
   const [recentOrders, setRecentOrders] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  // ✅ Logout
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
@@ -21,13 +19,10 @@ export default function AdminDashboard() {
     window.location.reload();
   };
 
-  // ✅ Fetch orders from backend
   const fetchOrders = async () => {
     try {
       const res = await axios.get("http://localhost:5000/api/orders");
       const orders = res.data;
-
-      // Recent orders: latest 5
       const sortedOrders = orders
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
         .slice(0, 5);
@@ -41,11 +36,9 @@ export default function AdminDashboard() {
         }))
       );
 
-      // Stats calculation
       const totalOrders = orders.length;
       const pendingOrders = orders.filter((o) => o.status === "Pending").length;
 
-      // For total products, sum up unique product count across orders
       let productSet = new Set();
       orders.forEach((o) => o.items.forEach((item) => productSet.add(item.name)));
 
@@ -70,7 +63,6 @@ export default function AdminDashboard() {
 
   return (
     <div className="min-h-screen flex bg-gray-100">
-      {/* Sidebar */}
       <div className="w-64 bg-gray-800 text-white p-6">
         <h2 className="text-2xl font-bold mb-8">⚡ Admin Panel</h2>
         <nav className="space-y-4">
@@ -89,15 +81,11 @@ export default function AdminDashboard() {
         </button>
       </div>
 
-      {/* Main content */}
       <div className="flex-1 p-10">
-        {/* Header */}
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold text-gray-800">Welcome, Admin 🎉</h1>
           <p className="text-gray-600">Manage your e-commerce efficiently</p>
         </div>
-
-        {/* Stats Section */}
         <div className="grid grid-cols-3 gap-6 mb-10">
           <div className="bg-white shadow-lg rounded-xl p-6 text-center">
             <h2 className="text-2xl font-bold text-gray-800">{stats.totalOrders}</h2>
@@ -113,7 +101,6 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        {/* Recent Orders */}
         <div className="bg-white shadow-lg rounded-xl p-6">
           <h2 className="text-xl font-bold text-gray-800 mb-4">🕒 Recent Orders</h2>
           <table className="w-full text-left border-collapse">

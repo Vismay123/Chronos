@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { FaUserCircle, FaShoppingCart, FaHeart, FaBars, FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import logo from "./Logo.jpg"; // Make sure Logo.jpg is inside src/assets
+import logo from "./Logo.jpg"; 
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -10,7 +10,6 @@ export default function Navbar() {
   const [favCount, setFavCount] = useState(0);
   const navigate = useNavigate();
 
-  // Load counts
   useEffect(() => {
     const loadCounts = () => {
       const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
@@ -35,7 +34,6 @@ export default function Navbar() {
 
   return (
     <nav className="flex justify-between items-center px-6 py-3 bg-gradient-to-r from-gray-900 via-teal-700 to-gray-900 text-white shadow-lg sticky top-0 z-50">
-      {/* Logo + Brand */}
       <div
         className="flex items-center gap-3 cursor-pointer"
         onClick={() => navigate("/home")}
@@ -44,9 +42,7 @@ export default function Navbar() {
         <h1 className="text-2xl font-bold tracking-wide">Chronos</h1>
       </div>
 
-      {/* Desktop Icons */}
       <div className="hidden md:flex items-center gap-6">
-        {/* Favourites */}
         <button onClick={() => navigate("/favourites")} className="relative">
           <FaHeart size={22} className="hover:text-pink-400 transition" />
           {favCount > 0 && (
@@ -56,7 +52,6 @@ export default function Navbar() {
           )}
         </button>
 
-        {/* Cart */}
         <button onClick={() => navigate("/cart")} className="relative">
           <FaShoppingCart size={22} className="hover:text-yellow-400 transition" />
           {cartCount > 0 && (
@@ -66,7 +61,6 @@ export default function Navbar() {
           )}
         </button>
 
-        {/* Profile */}
         <div className="relative">
           <button onClick={() => setOpen(!open)} className="flex items-center">
             <FaUserCircle size={28} className="hover:text-amber-400 transition" />
@@ -84,15 +78,12 @@ export default function Navbar() {
           )}
         </div>
       </div>
-
-      {/* Mobile Menu Button */}
       <div className="md:hidden">
         <button onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
         </button>
       </div>
 
-      {/* Mobile Dropdown */}
       {menuOpen && (
         <div className="absolute top-16 right-4 bg-gray-800 text-white rounded-lg shadow-lg flex flex-col w-40 py-2 md:hidden animate-fadeIn">
           <button

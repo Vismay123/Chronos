@@ -2,7 +2,7 @@ const express = require("express");
 const Order = require("../models/Order");
 const router = express.Router();
 
-// ✅ Create new order
+// this will Create new order
 router.post("/", async (req, res) => {
   try {
     const { items, total, user, paymentMethod } = req.body;
@@ -20,7 +20,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// ✅ Get all orders
+// to Get all orders
 router.get("/", async (req, res) => {
   try {
     const orders = await Order.find().sort({ createdAt: -1 });
@@ -31,7 +31,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// ✅ Get single order
+// Get single order
 router.get("/:id", async (req, res) => {
   try {
     const order = await Order.findById(req.params.id);
@@ -43,7 +43,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// ✅ Update order status only
+// Update order status only
 router.put("/:id/status", async (req, res) => {
   try {
     const { status } = req.body;
@@ -64,10 +64,10 @@ router.put("/:id/status", async (req, res) => {
   }
 });
 
-// ✅ Update entire order (status, paymentMethod, etc.)
+
 router.put("/:id", async (req, res) => {
   try {
-    const updates = req.body; // e.g., { status, paymentMethod }
+    const updates = req.body; 
     const order = await Order.findByIdAndUpdate(req.params.id, updates, { new: true });
 
     if (!order) return res.status(404).json({ message: "Order not found" });
@@ -79,7 +79,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// ✅ Delete order
+// Delete order
 router.delete("/:id", async (req, res) => {
   try {
     const order = await Order.findByIdAndDelete(req.params.id);

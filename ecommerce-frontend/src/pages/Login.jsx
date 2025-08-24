@@ -15,7 +15,7 @@ export default function Login({ setIsAuthenticated }) {
     setLoading(true);
 
     try {
-      // ✅ Hardcoded Admin Login
+      // Hardcoded Admin Login
       if (form.email === "admin@gmail.com" && form.password === "admin") {
         const adminUser = { id: "1", email: "admin@gmail.com", role: "admin" };
         localStorage.setItem("token", "admin-token-123");
@@ -25,7 +25,7 @@ export default function Login({ setIsAuthenticated }) {
         return;
       }
 
-      // ✅ Normal User Login via API
+      // Normal User Login via API
       const res = await axios.post("http://localhost:5000/api/auth/login", form);
 
       if (res.data.token && res.data.user) {

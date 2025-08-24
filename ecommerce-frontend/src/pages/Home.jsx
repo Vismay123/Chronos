@@ -25,7 +25,6 @@ export default function Home() {
     fetchProducts();
   }, []);
 
-  // Search + Sort
   useEffect(() => {
     let data = [...products];
     if (search) {
@@ -68,16 +67,14 @@ export default function Home() {
       <Navbar />
       <Toaster position="top-center" />
 
-      {/* Header (Hero Banner with only image) */}
       <header className="relative w-full h-[500px] overflow-hidden shadow-lg">
         <img
-          src="./image.jpg" // make sure image.jpg is in public/ folder
+          src="./image.jpg" 
           alt="Chronos Banner"
           className="w-full h-full object-cover"
         />
       </header>
 
-      {/* Search + Sort Controls */}
       <section className="flex flex-col sm:flex-row justify-between items-center gap-4 px-8 py-6 bg-gray-100 shadow-inner">
         <input
           type="text"
@@ -99,7 +96,6 @@ export default function Home() {
         </select>
       </section>
 
-      {/* Product Grid */}
       <main className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-8 flex-grow">
         {filtered.length === 0 ? (
           <p className="col-span-full text-center text-gray-500 text-lg">
@@ -111,7 +107,7 @@ export default function Home() {
               key={p.id}
               className="bg-white rounded-xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 relative group overflow-hidden"
             >
-              {/* Product Image */}
+            
               <div className="w-full h-56 bg-gray-100 flex items-center justify-center">
                 <img
                   src={p.image || "https://via.placeholder.com/200"}
@@ -120,13 +116,13 @@ export default function Home() {
                 />
               </div>
 
-              {/* Product Info */}
+             
               <div className="p-4">
                 <h2 className="text-lg font-semibold truncate">{p.name}</h2>
                 <p className="text-gray-700 font-medium mt-1">${p.price}</p>
               </div>
 
-              {/* Hover Overlay Actions */}
+              
               <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition">
                 <button
                   onClick={() => addToCart(p)}

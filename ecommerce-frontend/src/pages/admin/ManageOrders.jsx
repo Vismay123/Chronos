@@ -6,8 +6,6 @@ export default function ManageOrders() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("All");
-
-  // Fetch orders
   const fetchOrders = async () => {
     try {
       setLoading(true);
@@ -25,7 +23,6 @@ export default function ManageOrders() {
     fetchOrders();
   }, []);
 
-  // Update order status
   const handleStatusChange = async (orderId, newStatus) => {
     try {
       await axios.put(`http://localhost:5000/api/orders/${orderId}/status`, {
@@ -44,7 +41,6 @@ export default function ManageOrders() {
     }
   };
 
-  // Delete order
   const handleDelete = async (orderId) => {
     const confirm = await Swal.fire({
       title: "Are you sure?",

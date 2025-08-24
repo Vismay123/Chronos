@@ -5,11 +5,9 @@ const fs = require("fs");
 const xlsx = require("xlsx");
 
 const router = express.Router();
-
-// Excel file path
 const filePath = path.join(__dirname, "../products.xlsx");
 
-// Multer storage setup
+// Multer setup
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, path.join(__dirname, "../uploads"));
@@ -21,7 +19,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-// ✅ Helper functions to work with Excel
+// Helper functions to work with Excel
 const getProducts = () => {
   if (!fs.existsSync(filePath)) return [];
   const workbook = xlsx.readFile(filePath);
@@ -36,7 +34,6 @@ const saveProducts = (products) => {
   xlsx.writeFile(workbook, filePath);
 };
 
-// ✅ GET all products
 router.get("/", (req, res) => {
   try {
     const products = getProducts();
@@ -47,7 +44,6 @@ router.get("/", (req, res) => {
   }
 });
 
-// ✅ POST add product
 router.post("/", upload.single("image"), (req, res) => {
   try {
     const { name, price } = req.body;
@@ -55,7 +51,7 @@ router.post("/", upload.single("image"), (req, res) => {
       return res.status(400).json({ message: "Name and Price required" });
     }
 
-    // ✅ Convert uploaded file to full URL
+    // Convert uploaded file to full URL
     const imageUrl = req.file
       ? `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`
       : "";
@@ -78,7 +74,6 @@ router.post("/", upload.single("image"), (req, res) => {
   }
 });
 
-// ✅ DELETE product (and remove image file if exists)
 router.delete("/:id", (req, res) => {
   try {
     const id = parseInt(req.params.id);
@@ -89,7 +84,6 @@ router.delete("/:id", (req, res) => {
       return res.status(404).json({ message: "Product not found" });
     }
 
-    // Remove image file from uploads folder
     if (product.image) {
       const imagePath = path.join(
         __dirname,

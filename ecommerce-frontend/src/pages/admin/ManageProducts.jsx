@@ -71,8 +71,6 @@ export default function ManageProducts() {
           ➕ Add Product
         </button>
       </div>
-
-      {/* Products Table */}
       <table className="w-full border-collapse border border-gray-300">
         <thead>
           <tr className="bg-gray-200">
@@ -109,7 +107,6 @@ export default function ManageProducts() {
         </tbody>
       </table>
 
-      {/* Add Product Modal */}
       {modalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center">
           <div className="bg-white p-6 rounded shadow-lg w-96">

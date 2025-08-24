@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import Swal from "sweetalert2"; // npm install sweetalert2
+import Swal from "sweetalert2";
 
 export default function Checkout() {
   const location = useLocation();
@@ -11,17 +11,16 @@ export default function Checkout() {
   const [paymentMethod, setPaymentMethod] = useState("card");
   const [loading, setLoading] = useState(false);
 
-  // ✅ Logged in user
+  // Logged in user
   const loggedInUser = JSON.parse(localStorage.getItem("user"));
 
-  // ✅ Form data state
+  // Form data state
   const [formData, setFormData] = useState({
     name: loggedInUser?.name || "",
     email: loggedInUser?.email || "",
     address: "",
   });
 
-  // ✅ Handle form input
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -47,8 +46,6 @@ export default function Checkout() {
         (sum, item) => sum + parseFloat(item.price),
         0
       );
-
-      // ✅ Send only required fields to backend
       const res = await fetch("http://localhost:5000/api/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -95,7 +92,6 @@ export default function Checkout() {
         Checkout
       </h2>
 
-      {/* Order Summary */}
       <div className="bg-white p-6 mb-6 rounded-xl shadow-lg">
         <h3 className="font-semibold mb-3 text-lg border-b pb-2">
           🛒 Order Summary
@@ -121,7 +117,6 @@ export default function Checkout() {
         </p>
       </div>
 
-      {/* Payment Form */}
       <form
         onSubmit={handlePayment}
         className="space-y-4 bg-white p-6 shadow-lg rounded-xl"
@@ -154,7 +149,6 @@ export default function Checkout() {
           required
         />
 
-        {/* Payment Options */}
         <div className="space-y-2">
           <label className="flex items-center gap-2">
             <input
@@ -194,7 +188,6 @@ export default function Checkout() {
         </button>
       </form>
 
-      {/* Continue Shopping */}
       <div className="text-center mt-6">
         <button
           onClick={() => navigate("/home")}
