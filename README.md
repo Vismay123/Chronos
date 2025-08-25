@@ -84,3 +84,20 @@ Email notifications for orders
 Role-based access control
 
 Add Google Auth for fast login
+
+-PROJECT IMAGES
+![img1](https://github.com/user-attachments/assets/ba174ef9-d1e5-4606-9fb7-391ff6553652)
+![img2](https://github.com/user-attachments/assets/fd439e5b-74ab-4626-b2c2-f41dd972408f)
+![img3](https://github.com/user-attachments/assets/8c1280d3-723c-4d1a-8a78-b7b9a5f4a65d)
+![img4](https://github.com/user-attachments/assets/151a6689-c2c1-4299-804b-b1921e341f63)
+![img5](https://github.com/user-attachments/assets/51eaf371-27f4-48fb-b6e8-d67aebee0aa4)
+![img6](https://github.com/user-attachments/assets/5d08ed50-c1a3-4f7e-bb78-8f1b7020523b)
+![img7](https://github.com/user-attachments/assets/606696a1-6460-499d-8514-e336d4b674a9)
+![img8](https://github.com/user-attachments/assets/5f2bb264-8f64-4119-ba60-3988eb236a19)
+
+
+
+
+
+
+
